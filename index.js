@@ -23,8 +23,14 @@ class Player {
     update() {
         this.draw()
 
+        if (this.position.y + this.velocity.y >= canvas.height) {
+            this.velocity.y = 0;
+            this.position.y = canvas.height - 100;
+        } else {
+            this.position.y += this.velocity.y;
+            this.velocity.y += gravity;
+        };
 
-        
         // this.position.y += this.velocity.y
         // this.velocity.y += gravity
     }
