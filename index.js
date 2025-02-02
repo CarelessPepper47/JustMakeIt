@@ -1,11 +1,17 @@
 const canvas = document.querySelector('canvas');
+
+// Łapanie API "2d"
 const c = canvas.getContext('2d');
 
+
+// Wielkość okna gry
 canvas.width = 800;
 canvas.height = 600;
 
+// Grawitacja
 const gravity = 0.5
 
+// Tworzenie gracza i jego ruch
 class Player {
     constructor(position) {
         this.position = position
@@ -13,6 +19,8 @@ class Player {
             x: 0,
             y: 1,
         }
+
+        // Wysokość gracza
         this.height = 100
     }
 
@@ -41,12 +49,15 @@ class Player {
     }
 }
 
+// Zmienna gracza i jego koordynaty
 const player = new Player({
     x: 0,
     y: 0,
 });
 
 let y = 100;
+
+// Funckja w której odgrywać się będzie całą gra
 function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = 'white'
@@ -55,6 +66,7 @@ function animate() {
     player.update()
 }
 
+// Odpalanie funkcji
 animate();
 
 window.addEventListener('keydown', (event) => {
