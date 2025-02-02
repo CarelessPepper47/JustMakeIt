@@ -60,6 +60,19 @@ const player = new Player({
 
 let y = 100;
 
+const keys = {
+    d: {
+        pressed: false,
+    },
+    a: {
+        pressed: false,
+    },
+}
+
+if (keys.d.pressed = true) {
+    player.velocity.x = 1
+}
+
 // Funckja w której odgrywać się będzie całą gra
 function animate() {
     window.requestAnimationFrame(animate);
@@ -72,15 +85,30 @@ function animate() {
 // Odpalanie funkcji
 animate();
 
-// Reakcja na przycisk
+// Reakcja na naciśnięcie przycisku
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'd':
-        player.velocity.x = 1;
+            keys.d.pressed = true;
         break;
-        // case 'w':
-        // player.velocity.y = 
+        case 'a':
+            keys.a.pressed = true
+        break;
+        case 'w': 
+        player.velocity.y = -10;
 
+    }
+})
+
+// Reakcja na wypuszczenie przycisku
+window.addEventListener('keyup', (event) => {
+    switch (event.key) {
+        case 'd':
+            keys.d.pressed = false;
+        break;
+        case 'a':
+            keys.a.pressed = false;
+        break;
     }
 })
 
