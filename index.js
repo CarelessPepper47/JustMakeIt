@@ -7,10 +7,27 @@ document.addEventListener("touchmove", (e) => {
 // Łapanie API "2d"
 const c = canvas.getContext('2d');
 
+// Responsywne ustawienie rozmiaru canvas
+function setCanvasSize() {
+    const maxWidth = window.innerWidth;
+    let width = 800;
+    let height = 600;
 
-// Wielkość okna gry
-canvas.width = 800;
-canvas.height = 600;
+    if (maxWidth < 800) {
+        width = Math.max(320, maxWidth);
+        height = width / (800/600);
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+}
+
+setCanvasSize();
+window.addEventListener('resize', setCanvasSize);
+
+// // Wielkość okna gry
+// canvas.width = 800;
+// canvas.height = 600;
 
 // Grawitacja
 const gravity = 0.5
@@ -25,16 +42,17 @@ class Player {
         }
 
         // Rozmiary gracza
-        this.height = 100
+    this.height = 100
 	this.width = 100
 	this.isDragging = false; // Dodaj flagę dla drag and drop
-        this.offset = { x: 0, y: 0 }; // Offset podczas przeciągania
+    this.offset = { x: 0, y: 0 }; // Offset podczas przeciągania
+    this.color = 'red';
 	
     }
 
     draw() {
-        c.fillStyle = 'red'
-        c.fillRect(this.position.x, this.position.y, 100, this.height)
+        c.fillStyle = this.color;
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
@@ -76,6 +94,7 @@ class Player {
 const player = new Player({
     x: 0,
     y: 0,
+
 });
 
 let y = 100;
@@ -184,4 +203,17 @@ canvas.addEventListener('touchmove', (event) => {
 canvas.addEventListener('touchend', () => {
     player.isDragging = false; // Przestań przeciągać, pozwól grawitacji działać
     player.velocity.y = 0; // Wyzeruj prędkość pionową
+});
+
+// Pobranie palette-container
+const paletteContainer = document.querySelector('.palette-container');
+
+// Obsługa kliknięcia palety
+paletteContainer.addEventListener('click', (event) => {
+    const target = event.target;
+
+    if (target.classList.contains('palette')) {
+        const color = target.getAttribute('data-color');
+        player.color = color; // Zmiana koloru gracza
+    }
 });
