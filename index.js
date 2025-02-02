@@ -4,11 +4,14 @@ const c = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 600;
 
+const gravity = 0.5
+
 class Player {
-    constructor() {
-        this.position = {
+    constructor(position) {
+        this.position = position
+        this.velocity = {
             x: 0,
-            y: 0,
+            y: 1,
         }
     }
 
@@ -19,11 +22,15 @@ class Player {
 
     update() {
         this.draw()
-        this.position.y++
+        this.position.y += this.velocity.y
+        this.velocity.y += gravity
     }
 }
 
-const player = new Player();
+const player = new Player({
+    x: 0,
+    y: 0,
+});
 
 let y = 100;
 function animate() {
