@@ -42,6 +42,7 @@ class Player {
         
         // Grawitacja
         this.position.y += this.velocity.y
+        this.position.x += this.velocity.x
         if (this.position.y + this.height + this.velocity.y < canvas.height) {
             this.velocity.y += gravity;
         } else {
@@ -71,8 +72,16 @@ function animate() {
 // Odpalanie funkcji
 animate();
 
+// Reakcja na przycisk
 window.addEventListener('keydown', (event) => {
-    console.log(event);
+    switch (event.key) {
+        case 'd':
+        player.velocity.x = 1;
+        break;
+        // case 'w':
+        // player.velocity.y = 
+
+    }
 })
 
 // let ctx = 
