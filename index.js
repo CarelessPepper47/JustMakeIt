@@ -69,10 +69,6 @@ const keys = {
     },
 }
 
-if (keys.d.pressed = true) {
-    player.velocity.x = 1
-}
-
 // Funckja w której odgrywać się będzie całą gra
 function animate() {
     window.requestAnimationFrame(animate);
@@ -80,6 +76,14 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height)
 
     player.update()
+
+    player.velocity.x = 0;
+    if (keys.d.pressed) {
+        player.velocity.x = 2;
+    }
+    if (keys.a.pressed) {
+        player.velocity.x = -2;
+    }
 }
 
 // Odpalanie funkcji
