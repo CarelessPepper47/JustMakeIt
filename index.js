@@ -39,11 +39,13 @@ class Player {
         //     this.position.y += this.velocity.y;
         //     this.velocity.y += gravity;
         // };
-
+        
+        // Grawitacja
         this.position.y += this.velocity.y
         if (this.position.y + this.height + this.velocity.y < canvas.height) {
             this.velocity.y += gravity;
         } else {
+            // Stop spadania
             this.velocity.y = 0;
         }
     }
