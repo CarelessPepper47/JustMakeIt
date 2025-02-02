@@ -57,6 +57,10 @@ function animate() {
 
 animate();
 
+window.addEventListener('keydown', (event) => {
+    console.log(event);
+})
+
 // let ctx = 
 // ctx.fillStyle = "#FF0000";
 // ctx.beginPath();
